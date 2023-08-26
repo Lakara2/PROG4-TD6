@@ -1,5 +1,6 @@
 package com.example.prog4.controller;
 
+import com.example.prog4.config.CompanyConf;
 import com.example.prog4.controller.mapper.EmployeeMapper;
 import com.example.prog4.model.Employee;
 import com.example.prog4.service.EmployeeService;
@@ -36,8 +37,10 @@ public class DownloadPdfController {
     @GetMapping("/download/{eId}")
     public void download(HttpServletResponse response, @PathVariable String eId) throws IOException {
         Employee employee = employeeMapper.toView(employeeService.getOne(eId));
+        CompanyConf comp = new CompanyConf();
         Map<String, Object> data = new HashMap<>();
         data.put("employee", employee);
+        data.put("companyConf", comp);
         ByteArrayInputStream exportedData = exportPdfService.exportReceiptPdf("employee_form", data);
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=thymeleaf.pdf");

@@ -31,14 +31,6 @@
   flex: 0 0 100%;
   max-width: 100%;
 }
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-}
   </style>
 </head>
 
@@ -82,7 +74,7 @@
 <div class="footer border-top mt-5 pt-3 container">
   <div class="row">
     <div class="flex-grow-1 d-flex justify-content-start align-items-center">
-      <img th:src="${companyConf.logo}" class="company-logo" alt="logo">
+      <img th:src="${companyConf.logo}" class="company-logo" alt="logo"></img>
       <h1 class="mx-3 text-white" th:text="${companyConf.name}"></h1>
     </div>
     <div class="col-4">
@@ -92,7 +84,7 @@
     <div class="col-4">
       <p><strong>Address:</strong> <span th:text="${companyConf.address}"></span></p>
       <p><strong>Phone:</strong></p>
-      <ul class="list-unstyled" th:each="phone : ${companyConf.cnapsEmployeePhones}">
+      <ul class="list-unstyled" th:each="phone : ${companyConf.phones}">
         <li th:text="${phone.value}"></li>
       </ul>
       <p><strong>Email:</strong> <span th:text="${companyConf.email}"></span></p>
