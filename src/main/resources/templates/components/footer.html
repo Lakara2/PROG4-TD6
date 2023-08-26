@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="border-top mt-5 pt-3 container">
+    <div class="row">
+        <div class="flex-grow-1 d-flex justify-content-start align-items-center">
+            <img th:src="${companyConf.logo}" class="company-logo" alt="logo">
+            <h1 class="mx-3 text-white" th:text="${companyConf.name}"></h1>
+        </div>
+        <div class="col-4">
+            <p><strong>NIF:</strong> <span th:text="${companyConf.taxIdentity.nif}"></span></p>
+            <p><strong>STAT:</strong> <span th:text="${companyConf.taxIdentity.stat}"></span></p>
+        </div>
+        <div class="col-4">
+            <p><strong>Address:</strong> <span th:text="${companyConf.address}"></span></p>
+            <p><strong>Phone:</strong></p>
+            <ul class="list-unstyled" th:each="phone : ${companyConf.cnapsEmployeePhones}">
+                <li th:text="${phone.value}"></li>
+            </ul>
+            <p><strong>Email:</strong> <span th:text="${companyConf.email}"></span></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

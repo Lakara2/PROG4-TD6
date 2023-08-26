@@ -10,8 +10,17 @@
 <body>
 <header th:replace="~{components/navbar.html :: navbar('show / ' + ${eId})}"></header>
 <div class="container-fluid row text-center">
+    <a th:href="@{'http://localhost:8080/download/' + ${eId}}" class="btn btn-primary">Click Here to Download Your pdf</a>
     <div class="col-12 d-flex justify-content-start mb-5 align-items-center">
         <img th:src="${employee.stringImage}" alt="no image">
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <label for="registrationNumber" class="form-label text-black-50">registration Number</label>
+        <p id="registrationNumber" th:text="*{employee.registrationNumber}" type="text" class="form-control show-fields"></p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <label for="age" class="form-label text-black-50">Age</label>
+        <p id="age" th:text="*{employee.age}" type="text" class="form-control show-fields"></p>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <label for="lastName" class="form-label text-black-50">Last name</label>
@@ -21,6 +30,10 @@
         <label for="firstName" class="form-label text-black-50">First name</label>
         <p id="firstName" th:text="*{employee.firstName}" type="text"
            class="form-control show-fields"></p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <label for="salary" class="form-label text-black-50">Salary</label>
+        <p id="salary" th:text="*{employee.salary}" type="number" class="form-control show-fields"></p>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <label for="inputAddress" class="form-label text-black-50">Address</label>

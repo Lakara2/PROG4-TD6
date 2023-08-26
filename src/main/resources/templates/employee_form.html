@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <style>
+.border-top{
+  border-top: solid rgba(0,0,0,.125)
+}
+.containers {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.rows {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.mt-5 {
+  margin-top: 3rem;
+}
+.pb-3 {
+  padding-bottom: 1rem;
+}
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+  </style>
+</head>
+
+<body>
+<form class="mt-5 pb-3">
+  <div class="containers">
+    <div class="rows">
+      <div class="col-6">
+        <img class="table-bordered" th:src="${employee.stringImage}" alt="Photo 4x4"></img>
+      </div>
+      <div class="col-6">
+        <label for="registrationNumber" class="form-label text-black-50">registration Number</label>
+        <p id="registrationNumber" th:text="*{employee.registrationNumber}" type="text" class="form-control show-fields"></p>
+
+        <label for="firstName">Noms: </label>
+        <p id="firstName" th:text="*{employee.firstName}" type="text"></p>
+
+        <label for="lastName">Prenom: </label>
+        <p id="lastName" th:text="*{employee.lastName}" type="text"></p>
+
+        <label for="age" class="form-label text-black-50">Age</label>
+        <p id="age" th:text="*{employee.age}" type="text" class="form-control show-fields"></p>
+
+        <label for="entranceDate">Date d'embauche: </label>
+        <p id="entranceDate" th:text="*{employee.entranceDate}" type="date"></p>
+
+        <label for="departureDate">Date de depart: </label>
+        <p id="departureDate" th:text="*{employee.departureDate}" type="date"></p>
+
+        <label for="cnaps">Numero CNAPS: </label>
+        <p id="cnaps" th:text="*{employee.cnaps}" type="text"></p>
+      </div>
+    </div>
+    <div class="col-12 border-top mt-5 pt-3">
+      <h1>Information sur le salaire</h1>
+      <label for="salary">Salaire brute actuel: </label>
+      <p id="salary" th:text="*{employee.salary} Ariary/mois" type="number">
+    </div>
+  </div>
+</form>
+
+</body>
+</html>

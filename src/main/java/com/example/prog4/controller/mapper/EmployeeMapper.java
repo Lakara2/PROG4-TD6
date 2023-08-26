@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -42,6 +44,7 @@ public class EmployeeMapper {
                     .lastName(employee.getLastName())
                     .address(employee.getAddress())
                     .cin(employee.getCin())
+                    .salary(employee.getSalary())
                     .cnaps(employee.getCnaps())
                     .registrationNumber(employee.getRegistrationNumber())
                     .childrenNumber(employee.getChildrenNumber())
@@ -64,7 +67,13 @@ public class EmployeeMapper {
                 byte[] imageBytes = imageFile.getBytes();
                 String base64Image = Base64.getEncoder().encodeToString(imageBytes);
                 domainEmployee.setImage("data:image/jpeg;base64," + base64Image);
-            }
+            }/*
+            LocalDate birthDate = employee.getBirthDate();
+            if (birthDate != null) {
+                LocalDate currentDate = LocalDate.now();
+                int age = Period.between(birthDate, currentDate).getYears();
+                domainEmployee.setAge(age);
+            }*/
             return domainEmployee;
         } catch (Exception e) {
             throw new BadRequestException(e.getMessage());
@@ -72,6 +81,8 @@ public class EmployeeMapper {
     }
 
     public Employee toView(com.example.prog4.repository.entity.Employee employee) {
+        int age = calculateAge(employee.getBirthDate());
+
         return Employee.builder()
                 .id(employee.getId())
                 .firstName(employee.getFirstName())
@@ -95,6 +106,13 @@ public class EmployeeMapper {
                 // lists
                 .phones(employee.getPhones().stream().map(phoneMapper::toView).toList())
                 .positions(employee.getPositions())
+                .age(age)
+                .salary(employee.getSalary())
                 .build();
     }
+    private int calculateAge(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now();
+        return Period.between(birthDate, currentDate).getYears();
+    }
+
 }
