@@ -67,7 +67,7 @@
     <div class="col-12 border-top mt-5 pt-3">
       <h1>Information sur le salaire</h1>
       <label for="salary">Salaire brute actuel: </label>
-      <p id="salary" th:text="*{employee.salary} Ariary/mois" type="number">
+      <p id="salary" th:text="*{employee.salary + ' Ariary/mois'}" type="number"></p>
     </div>
   </div>
 </form>
